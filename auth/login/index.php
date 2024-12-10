@@ -1,5 +1,5 @@
 <?php
-include('../layouts/link.php');
+include('../../layouts/header.php');
 ?>
 <body>
     <div id="auth">
@@ -28,7 +28,7 @@ include('../layouts/link.php');
                        <div class="form-group position-relative has-icon-left">
                             <div class="clearfix">
                                 <label for="password">Password</label>
-                                <a href="auth-forgot-password.html" class="float-right">
+                                <a href="<?= BASE_URL ?>/auth/lupa-pw" class="float-right">
                                     <small>Forgot password?</small>
                                 </a>
                             </div>
