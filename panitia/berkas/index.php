@@ -9,7 +9,6 @@ include('../../layouts/header.php');
         <?php
         include('../layouts/nav.php');
         ?>
-        <h2>kepsek</h2>
     </div>
 </div>
 <?php
