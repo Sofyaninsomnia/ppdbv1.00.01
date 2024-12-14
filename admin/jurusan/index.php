@@ -20,7 +20,7 @@ include('../../layouts/header.php');
                         <div class="row justify-content-end">
                             <div class="col-md-6 mb-1">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="sok goleti dewek..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <input type="text" class="form-control" placeholder="Cari Jurusan . . ." aria-label="Recipient's username" aria-describedby="button-addon2" autofocus>
                                     <button class="btn btn-primary" type="button" id="button-addon2">Cari</button>
                                 </div>
                             </div>

@@ -1,58 +1,52 @@
-<?php 
-
-// menghubungkan php dengan koneksi database
+<?php
+// Menghubungkan PHP dengan koneksi database
 include('../../database/koneksi.php');
 
-// menangkap data yang dikirim dari form login
-$username = $_POST['username'];
-$password = $_POST['password'];
+// Mengecek apakah form login dikirimkan
+if (isset($_POST['login'])) {
+    // Menangkap data yang dikirim dari form login
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
+    // Menyeleksi data user dengan username yang sesuai
+    $query = $conn->prepare("SELECT * FROM user WHERE username = ?");
+    $query->bind_param("s", $username);
+    $query->execute();
+    $result = $query->get_result();
 
-// menyeleksi data user dengan username dan password yang sesuai
-$login = mysqli_query($conn,"SELECT * FROM user where username='$username' and password='$password'");
-// menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($login);
+    // Cek jika data ditemukan
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
 
-// cek apakah username dan password di temukan pada database
-if($cek > 0){
+        // Verifikasi password menggunakan password_hash
+        if (password_verify($password, $data['password'])) {
+            // Set session data
+            $_SESSION['username'] = $username;
+            $_SESSION['level'] = $data['level'];
 
-	$data = mysqli_fetch_assoc($login);
-
-	// cek jika user login sebagai admin
-	if($data['level']=="admin"){
-
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['level'] = "admin";
-		// alihkan ke halaman dashboard admin
-		header("location:../../admin/dashboard");
-
-	// cek jika user login sebagai operator
-	}else if($data['level']=="operator"){
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['level'] = "panitia";
-		// alihkan ke halaman dashboard operator
-		header("location:panitia/dashboard");
-
-	// cek jika user login sebagai pegawai
-	}else if($data['level']=="pegawai"){
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['level'] = "pegawai";
-		// alihkan ke halaman dashboard pegawai
-		header("location:admin/pegawai.php");
-	}else{
-
-		// alihkan ke halaman login kembali
-		header("location:index.php?pesan=gagal");
-	}
-
-	
-}else{
-	header("location:index.php?pesan=gagal");
+            // Tampilkan alert sesuai dengan level pengguna
+            if ($data['level'] == "admin") {
+                echo '<script>alert("Login berhasil! Selamat datang, Admin!"); window.location.href = "../../admin/dashboard";</script>';
+                exit();
+            } elseif ($data['level'] == "operator") {
+                echo '<script>alert("Login berhasil! Selamat datang, Operator!"); window.location.href = "panitia/dashboard";</script>';
+                exit();
+            } elseif ($data['level'] == "pegawai") {
+                echo '<script>alert("Login berhasil! Selamat datang, Pegawai!"); window.location.href = "admin/pegawai.php";</script>';
+                exit();
+            } else {
+                echo '<script>alert("Level tidak dikenali!"); window.location.href = "../login";</script>';
+                exit();
+            }
+        } else {
+            // Jika password tidak sesuai
+            echo '<script>alert("Username atau Password salah!"); window.location.href = "../login";</script>';
+            exit();
+        }
+    } else {
+        // Jika username tidak ditemukan
+        echo '<script>alert("Username tidak ditemukan!"); window.location.href = "../login";</script>';
+        exit();
+    }
 }
-
-
-
 ?>

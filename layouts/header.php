@@ -7,7 +7,7 @@ define('BASE_URL', 'http://localhost/ppdbv1.00.01');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Voler Admin Dashboard</title>
+    <title>PPDB SMK BC</title>
 
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/bootstrap.css">
 
