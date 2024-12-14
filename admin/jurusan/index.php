@@ -1,12 +1,9 @@
 <?php
 include('../../layouts/header.php');
 ?>
-
-<div class="id">
     <?php
-    include('../layouts/menu.php');
+    include('../layouts/aside.php');
     ?>
-    <div id="main">
         <?php
         include('../layouts/nav.php');
         ?>

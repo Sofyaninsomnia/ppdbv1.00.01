@@ -3,7 +3,7 @@ include('../../layouts/header.php');
 ?>
 
     <?php
-    include('../layouts/menu.php');
+    include('../layouts/aside.php');
     ?>
 
 <?php
