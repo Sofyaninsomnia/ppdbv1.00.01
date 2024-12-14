@@ -26,13 +26,16 @@ if (isset($_POST['login'])) {
 
             // Tampilkan alert sesuai dengan level pengguna
             if ($data['level'] == "admin") {
-                echo '<script>alert("Login berhasil! Selamat datang, Admin!"); window.location.href = "../../admin/dashboard";</script>';
+                echo '<script>alert("Login berhasil! Anda login sebagai Admin!"); window.location.href = "../../admin/dashboard";</script>';
                 exit();
-            } elseif ($data['level'] == "operator") {
-                echo '<script>alert("Login berhasil! Selamat datang, Operator!"); window.location.href = "panitia/dashboard";</script>';
+            } elseif ($data['level'] == "kepsek") {
+                echo '<script>alert("Login berhasil! Anda login sebagai Kepsek!"); window.location.href = "../../kepsek/dashboard";</script>';
                 exit();
-            } elseif ($data['level'] == "pegawai") {
-                echo '<script>alert("Login berhasil! Selamat datang, Pegawai!"); window.location.href = "admin/pegawai.php";</script>';
+            } elseif ($data['level'] == "panitia") {
+                echo '<script>alert("Login berhasil! Anda login sebagai Panitia!"); window.location.href = "../../panitia/dashboard";</script>';
+                exit();
+            } elseif ($data['level'] == "guru") {
+                echo '<script>alert("Login berhasil! Anda login sebagai Guru!"); window.location.href = "../../guru/dashboard";</script>';
                 exit();
             } else {
                 echo '<script>alert("Level tidak dikenali!"); window.location.href = "../login";</script>';
