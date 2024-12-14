@@ -1,8 +1,8 @@
 <?php
-include('../../layouts/header.php');
+include('../layouts/header.php');
 include('../../database/koneksi.php');
 ?>
-
+<body>
 <div id="auth">
         
 <div class="container">
@@ -15,13 +15,13 @@ include('../../database/koneksi.php');
                         <h3>Sign In</h3>
                         <p>Please sign in to continue to Voler.</p>
                     </div>
-                    <form action="index.html">
+                    <form action="../function/login.php" method="post">
                         <div class="form-group position-relative has-icon-left">
                             <label for="username">Username</label>
                             <div class="position-relative">
-                                <input type="text" class="form-control" id="username">
+                                <input type="text" class="form-control" name="username">
                                 <div class="form-control-icon">
-                                    <i data-feather="user"></i>
+                                    <i data-feather="users"></i>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@ include('../../database/koneksi.php');
                                 </a>
                             </div>
                             <div class="position-relative">
-                                <input type="text" class="form-control" id="password">
+                                <input type="password" class="form-control" name="password">
                                 <div class="form-control-icon">
                                     <i data-feather="lock"></i>
                                 </div>
@@ -50,7 +50,7 @@ include('../../database/koneksi.php');
                             </div>
                         </div>
                         <div class="clearfix">
-                            <button class="btn btn-primary float-right">Submit</button>
+                            <button class="btn btn-primary float-right" name="login" value="login">Submit</button>
                         </div>
                     </form>
                     <div class="divider">
@@ -72,5 +72,5 @@ include('../../database/koneksi.php');
 
     </div>
     <?php
-    include('../../layouts/footer.php');
+    include('../layouts/footer.php');
     ?>

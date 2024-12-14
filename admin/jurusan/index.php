@@ -1,25 +1,19 @@
 <?php
 include('../../layouts/header.php');
 ?>
+<div id="app">
     <?php
     include('../layouts/aside.php');
     ?>
+    <div id="main">
         <?php
         include('../layouts/nav.php');
         ?>
         <div class="main-content container-fluid">
-            <div class="page-title">
-                <div class="row">
-                    <div class="col-12 col-md-6 order-md-1 order-last">
-                        <h3>Datatable</h3>
-                        <p class="text-subtitle text-muted">We use 'simple-datatables' made by @fiduswriter. You can check the full documentation <a href="https://github.com/fiduswriter/Simple-DataTables/wiki">here</a>.</p>
-                    </div>
-                </div>
-            </div>
             <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        Simple Datatable
+                        Daftar Jurusan
                     </div>
                     <div class="card-body">
 
@@ -72,7 +66,7 @@ include('../../layouts/header.php');
                                     <td>
                                         <span class="badge bg-success">Active</span>
                                     </td>
-                          </tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
