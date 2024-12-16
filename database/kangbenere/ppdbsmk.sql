@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 10, 2024 at 02:16 AM
+-- Generation Time: Dec 16, 2024 at 06:22 AM
 -- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- PHP Version: 8.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,10 +34,10 @@ CREATE TABLE `asal_sekolah` (
   `nama_sekolah` varchar(250) NOT NULL,
   `alamat_sekolah` varchar(250) NOT NULL,
   `nama_kepsek` varchar(150) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  PRIMARY KEY (`npsn`, `nisn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai;
--------------------------------------------------------
+  `alamat` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `biodata`
@@ -104,17 +104,27 @@ CREATE TABLE `pendaftaran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `users` (
-  `id_petugas` int NOT NULL,
-  `nama_petugas` varchar(50) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `no_hp` varchar(20) NOT NULL,
-  `level` enum('admin','guru_panitia','guru','kepsek') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `user` (
+  `id_user` int NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `no_telepon` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `level` enum('admin','guru','panitia','kepsek') COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `no_telepon`, `level`) VALUES
+(14, 'Sofyan Swift', 'sof', '$2y$10$0Pv39PYwjnEQefRjM5A7v.di97rOufABLGO2JKwlCwTJJYus5a3g6', 'soft@gmail.com', '089656783452', 'admin'),
+(15, 'kepsek', 'kep', '$2y$10$XyuZYVRV4MXGgcuo3sXZU.s0qAeuHfOJMQgPXaNgL72/CEUptpLXu', 'kepsek@gmail.com', '089656783452', 'guru'),
+(16, 'yuyu', 'ayu', '$2y$10$GrhKBGk3w7n/zLjcHHuUPu4j5CgZVD7qm7XxCTg7fAQrVBozI9ThS', 'ay@gmail.com', '0878687', 'panitia');
 
 --
 -- Indexes for dumped tables
@@ -124,54 +134,23 @@ CREATE TABLE `users` (
 -- Indexes for table `asal_sekolah`
 --
 ALTER TABLE `asal_sekolah`
-  ADD PRIMARY KEY (`npsn`),
-  ADD UNIQUE KEY `nisn` (`nisn`);
+  ADD PRIMARY KEY (`npsn`,`nisn`);
 
 --
--- Indexes for table `jurusan`
+-- Indexes for table `user`
 --
-ALTER TABLE `jurusan`
-  ADD PRIMARY KEY (`kode_jurusan`);
-
---
--- Indexes for table `pendaftar`
---
-ALTER TABLE `pendaftar`
-  ADD PRIMARY KEY (`nik`);
-
---
--- Indexes for table `pendaftaran`
---
-ALTER TABLE `pendaftaran`
-  ADD PRIMARY KEY (`nisn`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_petugas`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `asal_sekolah`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `asal_sekolah`
-  MODIFY `npsn` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pendaftaran`
---
-ALTER TABLE `pendaftaran`
-  MODIFY `nisn` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id_petugas` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
