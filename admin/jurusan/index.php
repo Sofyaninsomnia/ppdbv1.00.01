@@ -3,7 +3,7 @@ include('../layouts/header.php');
 ?>
 
 <body>
-    <div id="app">
+    <div id="app"> 
         <?php
         include('../layouts/aside.php');
         ?>
