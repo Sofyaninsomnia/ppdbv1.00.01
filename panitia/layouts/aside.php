@@ -7,7 +7,7 @@
                     <ul class="menu">
 
 
-                        <li class='sidebar-title'>Home</li>
+                        <li class='sidebar-title'>Menu</li>
 
 
 
@@ -19,7 +19,6 @@
 
                         </li>
 
-                        <li class='sidebar-title'>Main Menu</li>
 
                         <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'jurusan') ? 'active' : ''; ?> ">
                             <a href="<?= BASE_URL ?>/admin/jurusan" class='sidebar-link'>

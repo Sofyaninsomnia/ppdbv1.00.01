@@ -1,4 +1,4 @@
-<div id="sidebar" class='active'>
+        <div id="sidebar" class='active'>
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
                     <img src="<?= BASE_URL ?>/assets/images/logo.svg" alt="" srcset="">

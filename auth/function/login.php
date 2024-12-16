@@ -20,9 +20,9 @@ if (isset($_POST['login'])) {
 
         // Verifikasi password menggunakan password_hash
         if (password_verify($password, $data['password'])) {
-            // Set session data
-            $_SESSION['username'] = $username;
-            $_SESSION['level'] = $data['level'];
+            // Set session data, mengganti 'username' menjadi 'user'
+            $_SESSION['user'] = $data['username'];  // Menyimpan username dalam session 'user'
+            $_SESSION['level'] = $data['level'];  // Menyimpan level dalam session
 
             // Tampilkan alert sesuai dengan level pengguna
             if ($data['level'] == "admin") {
