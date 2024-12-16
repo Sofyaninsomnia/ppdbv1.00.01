@@ -274,37 +274,6 @@ include('../../layouts/header.php');
                         </table>
                     </div>
 
-                    <!-- Perbaikan tampilan bottom dataTable -->
-                    <div class="dataTable-bottom d-flex justify-content-between align-items-center py-2">
-                        <!-- Informasi jumlah data -->
-                        <div class="dataTable-info">
-                            Showing 1 to 6 of 6 entries
-                        </div>
-                        <!-- Pagination -->
-                        <ul class="pagination pagination-primary float-end mb-0">
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="1">‹</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="1">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="2">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="3">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="4">4</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="5">5</a>
-                            </li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" data-page="6">›</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </section>
         </div>

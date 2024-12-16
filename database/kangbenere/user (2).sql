@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2024 at 03:29 AM
+-- Generation Time: Dec 16, 2024 at 07:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ukk_perpus`
+-- Database: `ppdbsmk`
 --
 
 -- --------------------------------------------------------
@@ -33,21 +33,18 @@ CREATE TABLE `user` (
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
   `no_telepon` varchar(255) DEFAULT NULL,
-  `level` enum('admin','petugas','peminjam') DEFAULT NULL
+  `level` enum('admin','guru','panitia','kepsek') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `alamat`, `no_telepon`, `level`) VALUES
-(2, 'Petugas Perpus', 'petugas', '698d51a19d8a121ce581499d7b701668', 'petugas@gmail.com', 'Japura Lor', '089676547890', 'petugas'),
-(3, 'Peminjam', 'peminjam', 'bcbe3365e6ac95ea2c0343a2395834dd', 'peminjam@gmail.com', 'Japura Kidul', '089123456786', 'peminjam'),
-(6, 'Swift', 'sof', 'c8837b23ff8aaa8a2dde915473ce0991', 'ngodingsekarepe@gmail.com', 'Cipeujeuh Kulon', '089785343647', 'admin'),
-(8, 'Ubaidillah As-syakir', 'bay', '698d51a19d8a121ce581499d7b701668', 'ubed@gmail.com', 'Jepura', '089656783452', 'peminjam'),
-(10, 'yusda', 'yus', '698d51a19d8a121ce581499d7b701668', 'yusda@gmail.com', 'Atlantis', '08967457637423', 'peminjam');
+INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `email`, `no_telepon`, `level`) VALUES
+(14, 'Sofyan Swift', 'sof', '$2y$10$0Pv39PYwjnEQefRjM5A7v.di97rOufABLGO2JKwlCwTJJYus5a3g6', 'soft@gmail.com', '089656783452', 'admin'),
+(15, 'kepsek', 'kep', '$2y$10$XyuZYVRV4MXGgcuo3sXZU.s0qAeuHfOJMQgPXaNgL72/CEUptpLXu', 'kepsek@gmail.com', '089656783452', 'guru'),
+(16, 'yuyu', 'ayu', '$2y$10$GrhKBGk3w7n/zLjcHHuUPu4j5CgZVD7qm7XxCTg7fAQrVBozI9ThS', 'ay@gmail.com', '0878687', 'panitia');
 
 --
 -- Indexes for dumped tables
@@ -67,7 +64,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
