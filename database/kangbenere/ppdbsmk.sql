@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 16, 2024 at 06:22 AM
--- Server version: 8.0.30
--- PHP Version: 8.3.12
+-- Host: 127.0.0.1
+-- Generation Time: Dec 17, 2024 at 03:17 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,33 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `asal_sekolah` (
-  `npsn` int NOT NULL,
-  `nisn` int NOT NULL,
+  `npsn` int(11) NOT NULL,
+  `nisn` int(11) NOT NULL,
   `nama_siswa` varchar(100) NOT NULL,
   `nama_sekolah` varchar(250) NOT NULL,
   `alamat_sekolah` varchar(250) NOT NULL,
   `nama_kepsek` varchar(150) NOT NULL,
   `alamat` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `biodata`
+-- Table structure for table `dokumen`
 --
 
-CREATE TABLE `biodata` (
-  `kode_jurusan` varchar(11) NOT NULL,
-  `nisn` int NOT NULL,
-  `nama_siswa` varchar(250) NOT NULL,
-  `nama_jurusan` varchar(150) NOT NULL,
-  `gambar_akta` varchar(255) NOT NULL,
-  `gambar_kk` varchar(255) NOT NULL,
-  `gambar_pasfoto` varchar(255) NOT NULL,
-  `gambar_skl` varchar(225) NOT NULL,
-  `gambar_ktpibu` varchar(255) NOT NULL,
-  `gambar_ktpayah` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `dokumen` (
+  `id_dokumen` int(11) NOT NULL,
+  `id_siswa` int(11) DEFAULT NULL,
+  `jenis_dokumen` enum('KK','Pas Foto','Ijazah','KTP Ortu','Surat Keterangan Lulus') DEFAULT NULL,
+  `path_dokumen` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -63,26 +57,26 @@ CREATE TABLE `biodata` (
 --
 
 CREATE TABLE `jurusan` (
-  `kode_jurusan` varchar(13) NOT NULL,
-  `nisn` int NOT NULL,
-  `nama_siswa` varchar(250) NOT NULL,
-  `nama_jurusan` varchar(150) NOT NULL,
-  `kouta` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_jurusan` int(11) NOT NULL,
+  `nama_jurusan` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pendaftar`
+-- Table structure for table `orang_tua`
 --
 
-CREATE TABLE `pendaftar` (
-  `nik` int NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(200) NOT NULL,
-  `no_hp` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `orang_tua` (
+  `id_orang_tua` int(11) NOT NULL,
+  `id_siswa` int(11) DEFAULT NULL,
+  `nama_orang_tua` varchar(255) DEFAULT NULL,
+  `hubungan` enum('Ayah','Ibu','Wali') DEFAULT NULL,
+  `pekerjaan` varchar(255) DEFAULT NULL,
+  `alamat_kerja` text DEFAULT NULL,
+  `no_telepon_ortu` varchar(20) DEFAULT NULL,
+  `email_ortu` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -91,15 +85,32 @@ CREATE TABLE `pendaftar` (
 --
 
 CREATE TABLE `pendaftaran` (
-  `nisn` int NOT NULL,
-  `nama_lengkap` varchar(100) NOT NULL,
-  `asal_sekolah` varchar(255) NOT NULL,
-  `ttl` varchar(100) NOT NULL,
-  `jenis_kelamin` enum('L/P') NOT NULL,
-  `alamat` text NOT NULL,
-  `nama_ortu` varchar(100) NOT NULL,
-  `gambar` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_pendaftaran` int(11) NOT NULL,
+  `id_siswa` int(11) DEFAULT NULL,
+  `tanggal_pendaftaran` date DEFAULT NULL,
+  `jalur_pendaftaran` enum('Reguler','Prestasi','Zonasi') DEFAULT NULL,
+  `status_pendaftaran` enum('Diterima','Tidak Diterima','Dalam Proses') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `siswa`
+--
+
+CREATE TABLE `siswa` (
+  `id_siswa` int(11) NOT NULL,
+  `nisn` varchar(20) DEFAULT NULL,
+  `nama_lengkap` varchar(255) DEFAULT NULL,
+  `jenis_kelamin` enum('L','P') DEFAULT NULL,
+  `ttl` varchar(250) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `agama` varchar(50) DEFAULT NULL,
+  `no_telepon` varchar(20) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `asal_sekolah` varchar(255) DEFAULT NULL,
+  `id_jurusan` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -108,13 +119,13 @@ CREATE TABLE `pendaftaran` (
 --
 
 CREATE TABLE `user` (
-  `id_user` int NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `no_telepon` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `level` enum('admin','guru','panitia','kepsek') COLLATE utf8mb4_general_ci DEFAULT NULL
+  `id_user` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `no_telepon` varchar(255) DEFAULT NULL,
+  `level` enum('admin','guru','panitia','kepsek') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -137,6 +148,41 @@ ALTER TABLE `asal_sekolah`
   ADD PRIMARY KEY (`npsn`,`nisn`);
 
 --
+-- Indexes for table `dokumen`
+--
+ALTER TABLE `dokumen`
+  ADD PRIMARY KEY (`id_dokumen`),
+  ADD KEY `id_siswa` (`id_siswa`);
+
+--
+-- Indexes for table `jurusan`
+--
+ALTER TABLE `jurusan`
+  ADD PRIMARY KEY (`id_jurusan`);
+
+--
+-- Indexes for table `orang_tua`
+--
+ALTER TABLE `orang_tua`
+  ADD PRIMARY KEY (`id_orang_tua`),
+  ADD KEY `id_siswa` (`id_siswa`);
+
+--
+-- Indexes for table `pendaftaran`
+--
+ALTER TABLE `pendaftaran`
+  ADD PRIMARY KEY (`id_pendaftaran`),
+  ADD KEY `id_siswa` (`id_siswa`);
+
+--
+-- Indexes for table `siswa`
+--
+ALTER TABLE `siswa`
+  ADD PRIMARY KEY (`id_siswa`),
+  ADD UNIQUE KEY `nisn` (`nisn`),
+  ADD KEY `id_jurusan` (`id_jurusan`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -147,10 +193,68 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `dokumen`
+--
+ALTER TABLE `dokumen`
+  MODIFY `id_dokumen` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id_jurusan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orang_tua`
+--
+ALTER TABLE `orang_tua`
+  MODIFY `id_orang_tua` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pendaftaran`
+--
+ALTER TABLE `pendaftaran`
+  MODIFY `id_pendaftaran` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `siswa`
+--
+ALTER TABLE `siswa`
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `dokumen`
+--
+ALTER TABLE `dokumen`
+  ADD CONSTRAINT `dokumen_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
+
+--
+-- Constraints for table `orang_tua`
+--
+ALTER TABLE `orang_tua`
+  ADD CONSTRAINT `orang_tua_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
+
+--
+-- Constraints for table `pendaftaran`
+--
+ALTER TABLE `pendaftaran`
+  ADD CONSTRAINT `pendaftaran_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
+
+--
+-- Constraints for table `siswa`
+--
+ALTER TABLE `siswa`
+  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `jurusan` (`id_jurusan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
