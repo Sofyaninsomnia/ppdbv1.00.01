@@ -1,17 +1,11 @@
-<?php
-include('../../database/koneksi.php');
-// Check if the user is already logged in
-if(! isset($_SESSION['user'])) {
-    header('Location: ../../auth/login');
- }
-?>
+
 
 <?php
 include('../../layouts/header.php');
 ?>
 <div class="id">
     <?php
-    include('../layouts/menu.php');
+    include('../layouts/aside.php');
     ?>
     <div id="main">
         <?php
@@ -30,41 +24,48 @@ include('../../layouts/header.php');
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">First Name</label>
+                                            <label for="first-name-column">Nisn</label>
                                             <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
                                                 name="fname-column">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="last-name-column">Last Name</label>
+                                            <label for="last-name-column">Nama Lengkap</label>
                                             <input type="text" id="last-name-column" class="form-control" placeholder="Last Name"
                                                 name="lname-column">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="city-column">City</label>
+                                            <label for="city-column">Asal Sekolah</label>
                                             <input type="text" id="city-column" class="form-control" placeholder="City" name="city-column">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="country-floating">Country</label>
+                                            <label for="country-floating">Tempat Tgl Lahir</label>
                                             <input type="text" id="country-floating" class="form-control" name="country-floating"
                                                 placeholder="Country">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="company-column">Company</label>
+                                            <label for="company-column">Jenis Kelamin</label>
                                             <input type="text" id="company-column" class="form-control" name="company-column"
                                                 placeholder="Company">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="email-id-column">Email</label>
+                                            <label for="email-id-column">Nama Ortu</label>
+                                            <input type="email" id="email-id-column" class="form-control" name="email-id-column"
+                                                placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="email-id-column">Gambar</label>
                                             <input type="email" id="email-id-column" class="form-control" name="email-id-column"
                                                 placeholder="Email">
                                         </div>

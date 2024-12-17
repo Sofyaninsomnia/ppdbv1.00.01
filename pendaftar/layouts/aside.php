@@ -16,10 +16,10 @@
                     </li>
 
                     <li class='sidebar-title'>Menu</li>
-                    <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'data-formulir') ? 'active' : ''; ?>">
-                        <a href="<?= BASE_URL ?>/pendaftar/data-formulir" class='sidebar-link'>
+                    <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'pendaftaran') ? 'active' : ''; ?>">
+                        <a href="<?= BASE_URL ?>/pendaftar/pendaftaran" class='sidebar-link'>
                             <i data-feather="book-open" width="20"></i>
-                            <span>Data Formulir</span>
+                            <span>Pendaftaran</span>
                         </a>
 
                     </li>

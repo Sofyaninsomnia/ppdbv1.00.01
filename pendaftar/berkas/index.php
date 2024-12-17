@@ -1,17 +1,11 @@
-<?php
-include('../../database/koneksi.php');
-// Check if the user is already logged in
-if(! isset($_SESSION['user'])) {
-    header('Location: ../../auth/login');
- }
-?>
+
 
 <?php
 include('../../layouts/header.php');
 ?>
  <div class="id">
 <?php
-include('../layouts/menu.php');
+include('../layouts/aside.php');
 ?>
  <div id="main">
 <?php
@@ -29,11 +23,51 @@ include('../layouts/nav.php');
                             <div class="row">
                                 <div class="col-lg-6 col-md-12">
                                     <p>Default</p>
-                                    <div class="form-file">
+                                   <div class="form-file">
                                         <input type="file" class="form-file-input" id="customFile">
                                         <label class="form-file-label" for="customFile">
                                             <span class="form-file-text">Choose file...</span>
-                                            <span class="form-file-button">Browse</span>
+                                            <span class="form-file-button btn-primary "><i data-feather="upload"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <p>Default</p>
+                                   <div class="form-file">
+                                        <input type="file" class="form-file-input" id="customFile">
+                                        <label class="form-file-label" for="customFile">
+                                            <span class="form-file-text">Choose file...</span>
+                                            <span class="form-file-button btn-primary "><i data-feather="upload"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <p>Default</p>
+                                   <div class="form-file">
+                                        <input type="file" class="form-file-input" id="customFile">
+                                        <label class="form-file-label" for="customFile">
+                                            <span class="form-file-text">Choose file...</span>
+                                            <span class="form-file-button btn-primary "><i data-feather="upload"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <p>Default</p>
+                                   <div class="form-file">
+                                        <input type="file" class="form-file-input" id="customFile">
+                                        <label class="form-file-label" for="customFile">
+                                            <span class="form-file-text">Choose file...</span>
+                                            <span class="form-file-button btn-primary "><i data-feather="upload"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <p>Default</p>
+                                   <div class="form-file">
+                                        <input type="file" class="form-file-input" id="customFile">
+                                        <label class="form-file-label" for="customFile">
+                                            <span class="form-file-text">Choose file...</span>
+                                            <span class="form-file-button btn-primary "><i data-feather="upload"></i></span>
                                         </label>
                                     </div>
                                 </div>
