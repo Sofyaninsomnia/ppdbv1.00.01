@@ -1,4 +1,5 @@
 <?php
+include('../../database/koneksi.php');
 include('../../layouts/header.php');
 ?>
 <div class="id">
@@ -74,29 +75,30 @@ include('../../layouts/header.php');
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="email-id-column">Email</label>
-                                                <input type="number" id="email-id-column" class="form-control" name="email"
+                                                <input type="email" id="email-id-column" class="form-control" name="email"
                                                     placeholder="email">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="email-id-column">Asal Sekolah</label>
-                                                <input type="number" id="email-id-column" class="form-control" name="asal_sekolah"
+                                                <input type="text" id="email-id-column" class="form-control" name="asal_sekolah"
                                                     placeholder="asal sekolah">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="email-id-column">Pilih Jurusan</label>
-                                                <select class="form-select" name="jurusan"
-                                                            placeholder="Email">
-                                                            <option value="pplg">PPLG</option>
-                                                            <option value="lk">LK</option>
-                                                            <option value="tbkr">TBKR</option>
-                                                            <option value="dpb">DPB</option>
-                                                            <option value="sti">STI</option>
-                                                            <option value="dkv">DKV</option>
-                                                        </select>
+                                                <select class="form-select" name="jurusan">
+                                                    <?php
+                                                    $jur = mysqli_query($conn, "SELECT * FROM jurusan");
+                                                    while ($jurusan = mysqli_fetch_array($jur)) {
+                                                    ?>
+                                                        <option value="<?php echo $jurusan['id_jurusan']; ?>"><?php echo $jurusan['jurusan']; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group col-12">
