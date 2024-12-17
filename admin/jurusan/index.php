@@ -1,4 +1,12 @@
 <?php
+include('../../database/koneksi.php');
+// Check if the user is already logged in
+if(! isset($_SESSION['user'])) {
+    header('Location: ../../auth/login');
+ }
+?>
+
+<?php
 include('../layouts/header.php');
 ?>
 
