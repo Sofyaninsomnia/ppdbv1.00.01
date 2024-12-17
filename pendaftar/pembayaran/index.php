@@ -1,7 +1,10 @@
-
-
 <?php
+include('../../database/koneksi.php.php');
 include('../../layouts/header.php');
+if (!isset($_SESSION["user"])) {
+    header("Location: ../../auth/login_pendaftar");
+    exit;
+}
 ?>
 <div id="app">
     <?php

@@ -1,6 +1,19 @@
 <?php
 include('../../database/koneksi.php');
 include('../../layouts/header.php');
+
+// Pastikan pendaftar sudah login
+if (!isset($_SESSION["user"])) {
+    header("Location: ../../auth/login_pendaftar");
+    exit;
+}
+
+// Ambil id_pendaftar dari session
+$id_pendaftar = $_SESSION["user"]["id_pendaftar"];
+
+// Cek apakah pendaftar sudah terdaftar di tabel siswa
+$query = mysqli_query($conn, "SELECT * FROM siswa WHERE id_pendaftar = '$id_pendaftar'");
+$isRegistered = mysqli_num_rows($query) > 0;  // Jika lebih dari 0 berarti sudah terdaftar
 ?>
 <div class="id">
     <?php
@@ -10,110 +23,78 @@ include('../../layouts/header.php');
         <?php
         include('../layouts/nav.php');
         ?>
-        <section id="multiple-column-form">
-            <div class="row match-height">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Sok daftar dewek</h4>
+        <div class="row" id="table-responsive table-bordered">
+            <div class="col-12">
+                <div class="card">
+                    <!-- Tambahkan div card-body di sini -->
+                    <div class="card-body">
+                        <div class="buttons">
+                            <!-- Menampilkan tombol hanya jika belum terdaftar -->
+                            <?php if (!$isRegistered): ?>
+                                <a href="daftar" class="btn btn-primary round">Daftar Sekarang</a>
+                            <?php endif; ?>
                         </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <form action="../function/daftar_siswa.php" method="post" class="form">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">Nisn</label>
-                                                <input type="text" id="first-name-column" class="form-control" placeholder="nisn"
-                                                    name="nisn">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="last-name-column">Nama Lengkap</label>
-                                                <input type="text" id="last-name-column" class="form-control" placeholder="nama_lengkap"
-                                                    name="nama_lengkap">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="city-column">Jenis Kelamin</label>
-                                                <select type="text" id="city-column" class="form-select" placeholder="jenis kelamin" name="jenis_kelamin">
-                                                    <option value="L">Laki-Laki</option>
-                                                    <option value="P">Perempuan</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="country-floating">Tempat Tgl Lahir</label>
-                                                <input type="text" id="country-floating" class="form-control" name="ttl"
-                                                    placeholder="tempat tgl lahir">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="company-column">Alamat</label>
-                                                <textarea type="text" id="company-column" class="form-control" name="alamat"
-                                                    placeholder="alamat"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-column">Agama</label>
-                                                <input type="text" id="email-id-column" class="form-control" name="agama"
-                                                    placeholder="agama">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-column">No Telepon</label>
-                                                <input type="number" id="email-id-column" class="form-control" name="no_telepon"
-                                                    placeholder="no telepon">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-column">Email</label>
-                                                <input type="email" id="email-id-column" class="form-control" name="email"
-                                                    placeholder="email">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-column">Asal Sekolah</label>
-                                                <input type="text" id="email-id-column" class="form-control" name="asal_sekolah"
-                                                    placeholder="asal sekolah">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-column">Pilih Jurusan</label>
-                                                <select class="form-select" name="id_jurusan"
-                                                    placeholder="Email">
-                                                    <?php
-                                                    $jur = mysqli_query($conn, "SELECT * FROM jurusan");
-                                                    while ($jurusan = mysqli_fetch_array($jur)) {
-                                                    ?>
-                                                        <option value="<?php echo $jurusan['id_jurusan']; ?>"><?php echo $jurusan['jurusan']; ?></option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary mr-1 mb-1" name="submit" value="submit">Submit</button>
-                                            <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
-                                        </div>
-                                    </div>
-                                </form>
+
+                        <!-- Card content untuk tabel, hanya tampilkan jika sudah terdaftar -->
+                        <?php if ($isRegistered): ?>
+                            <div class="card-content">
+                                <!-- table bordered -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nisn</th>
+                                                <th>Nama Siswa</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>Tempat Tanggal Lahir</th>
+                                                <th>Alamat</th>
+                                                <th>Agama</th>
+                                                <th>No Telepon</th>
+                                                <th>Email</th>
+                                                <th>Asal Sekolah</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // Query untuk menampilkan data siswa yang sudah terdaftar berdasarkan id_pendaftar
+                                            $query = mysqli_query($conn, "SELECT siswa.*, jurusan.jurusan FROM siswa LEFT JOIN jurusan ON siswa.id_jurusan = jurusan.id_jurusan WHERE siswa.id_pendaftar = '$id_pendaftar'");
+                                            while ($data = mysqli_fetch_array($query)) {
+                                            ?>
+                                                <tr>
+                                                    <td class="text-bold-500"><?php echo $data['nisn']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['nama_lengkap']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['jenis_kelamin']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['ttl']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['alamat']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['agama']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['no_telepon']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['email']; ?></td>
+                                                    <td class="text-bold-500"><?php echo $data['asal_sekolah']; ?></td>
+                                                    <td>
+                                                        <a href="edit_siswa.php?id=<?php echo $data['id_siswa']; ?>" class="btn btn-warning">Edit</a>
+                                                        <a href="hapus_siswa.php?id=<?php echo $data['id_siswa']; ?>" class="btn btn-danger">Cancel</a>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php else: ?>
+                            <!-- Pesan jika pengguna belum mendaftar -->
+                            <div class="alert alert-warning" role="alert">
+                                Anda belum mendaftar! Klik tombol "Daftar Sekarang" untuk melanjutkan pendaftaran.
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
         <?php
         include('../../layouts/footer.php');
         ?>
+    </div>
+</div>
