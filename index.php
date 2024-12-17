@@ -1,1 +1,1 @@
-<a href="auth/login">login disini</a>
+<a href="auth/login">login disini</a><a href="pendaftar/dashboard">Daftar Disini</a>
