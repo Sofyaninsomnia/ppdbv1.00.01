@@ -23,21 +23,21 @@ include('../../layouts/header.php');
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="first-name-column">Nisn</label>
-                                                <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
+                                                <input type="text" id="first-name-column" class="form-control" placeholder="nisn"
                                                     name="nisn">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Nama Lengkap</label>
-                                                <input type="text" id="last-name-column" class="form-control" placeholder="Last Name"
+                                                <input type="text" id="last-name-column" class="form-control" placeholder="nama lengkap"
                                                     name="nama_lengkap">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="city-column">Jenis Kelamin</label>
-                                                <select type="text" id="city-column" class="form-select" placeholder="City" name="jenis_kelamin">
+                                                <select type="text" id="city-column" class="form-select" placeholder="jenis kelamin" name="jenis_kelamin">
                                                     <option value="L">Laki-Laki</option>
                                                     <option value="P">Perempuan</option>
                                                 </select>
@@ -46,47 +46,49 @@ include('../../layouts/header.php');
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="country-floating">Tempat Tgl Lahir</label>
-                                                <input type="text" id="country-floating" class="form-control" name="country-floating"
-                                                    placeholder="Country">
+                                                <input type="text" id="country-floating" class="form-control" name="tempat tgl lahir"
+                                                    placeholder="tempat tgl lahir">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="company-column">Alamat</label>
                                                 <textarea type="text" id="company-column" class="form-control" name="alamat"
-                                                    placeholder="Company"></textarea>
+                                                    placeholder="alamat"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="email-id-column">Agama</label>
                                                 <input type="text" id="email-id-column" class="form-control" name="agama"
-                                                    placeholder="Email">
+                                                    placeholder="agama">
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="email-id-column">No Telepon</label>
                                                 <input type="number" id="email-id-column" class="form-control" name="no_telepon"
-                                                    placeholder="Email">
+                                                    placeholder="no telepon">
                                             </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="email-id-column">Email</label>
-                                                    <input type="email" id="email-id-column" class="form-control" name="email"
-                                                        placeholder="Email">
-                                                </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Email</label>
+                                                <input type="number" id="email-id-column" class="form-control" name="email"
+                                                    placeholder="email">
                                             </div>
-                                            <div class="col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="email-id-column">Asal Sekolah</label>
-                                                    <input type="text" id="email-id-column" class="form-control" name="asal_sekolah"
-                                                        placeholder="Email">
-                                                </div>
-                                                <div class="col-md-6 col-12">
-                                                    <div class="form-group">
-                                                        <label for="email-id-column">Pilih Jurusan</label>
-                                                        <select class="form-select" name="jurusan"
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Asal Sekolah</label>
+                                                <input type="number" id="email-id-column" class="form-control" name="asal_sekolah"
+                                                    placeholder="asal sekolah">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-12">
+                                            <div class="form-group">
+                                                <label for="email-id-column">Pilih Jurusan</label>
+                                                <select class="form-select" name="jurusan"
                                                             placeholder="Email">
                                                             <option value="pplg">PPLG</option>
                                                             <option value="lk">LK</option>
@@ -95,20 +97,21 @@ include('../../layouts/header.php');
                                                             <option value="sti">STI</option>
                                                             <option value="dkv">DKV</option>
                                                         </select>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <div class='form-check'>
-                                                            <div class="checkbox">
-                                                                <input type="checkbox" id="checkbox5" class='form-check-input' checked>
-                                                                <label for="checkbox5">Remember Me</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 d-flex justify-content-end">
-                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
-                                                        <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
-                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <div class='form-check'>
+                                                <div class="checkbox">
+                                                    <input type="checkbox" id="checkbox5" class='form-check-input' checked>
+                                                    <label for="checkbox5">Remember Me</label>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                            <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
