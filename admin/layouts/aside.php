@@ -21,6 +21,13 @@
 
                         <li class='sidebar-title'>Main Menu</li>
 
+                        <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'data_casis') ? 'active' : ''; ?> ">
+                            <a href="<?= BASE_URL ?>/admin/data_casis" class='sidebar-link'>
+                                <i data-feather="trello" width="20"></i>
+                                <span>Data Casis</span>
+                            </a>
+
+                        </li>
                         <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'jurusan') ? 'active' : ''; ?> ">
                             <a href="<?= BASE_URL ?>/admin/jurusan" class='sidebar-link'>
                                 <i data-feather="trello" width="20"></i>

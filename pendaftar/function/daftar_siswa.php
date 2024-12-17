@@ -11,11 +11,19 @@ if (isset($_POST['submit'])) {
     $no_telepon = $_POST['no_telepon'];
     $email = $_POST['email'];
     $asal_sekolah = $_POST['asal_sekolah'];
-    $query = mysqli_query($conn, "INSERT INTO siswa(id_jurusan,nisn,nama_lengkap,jenis_kelamin,ttl,alamat,agama,no_telepon,email,asal_sekolah) VALUES('$id_jurusan','$nisn','$nama_lengkap','$jenis_kelamin','$ttl','$alamat','$agama','$no_telepon','$email','$asal_sekolah')");
 
-    if ($query) {
+    // Menyiapkan query menggunakan prepared statements untuk keamanan
+    $stmt = $conn->prepare("INSERT INTO siswa (id_jurusan, nisn, nama_lengkap, jenis_kelamin, ttl, alamat, agama, no_telepon, email, asal_sekolah) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssssssss", $id_jurusan, $nisn, $nama_lengkap, $jenis_kelamin, $ttl, $alamat, $agama, $no_telepon, $email, $asal_sekolah);
+
+    // Mengeksekusi query dan mengecek hasilnya
+    if ($stmt->execute()) {
         echo '<script>alert("Pendaftaran Berhasil!"); location.href = "../pendaftaran";</script>';
     } else {
-        echo '<script>alert("Pendaftaran Gagal!"); location.href = "../pendaftaran";</script>';
+        echo '<script>alert("Pendaftaran Gagal! Error: ' . $stmt->error . '"); location.href = "../pendaftaran";</script>';
     }
+
+    // Menutup statement
+    $stmt->close();
 }
+?>

@@ -18,6 +18,11 @@
 <script src="<?= BASE_URL ?>/assets/js/vendors.js"></script>
 
 <script src="<?= BASE_URL ?>/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons"></script>
+<script>
+    feather.replace();  // Mengganti ikon dengan Feather Icons
+</script>
+
 </body>
 
 </html>

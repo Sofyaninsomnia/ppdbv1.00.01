@@ -31,7 +31,7 @@ include('../../layouts/header.php');
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="last-name-column">Nama Lengkap</label>
-                                                <input type="text" id="last-name-column" class="form-control" placeholder="nama lengkap"
+                                                <input type="text" id="last-name-column" class="form-control" placeholder="nama_lengkap"
                                                     name="nama_lengkap">
                                             </div>
                                         </div>
@@ -47,7 +47,7 @@ include('../../layouts/header.php');
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="country-floating">Tempat Tgl Lahir</label>
-                                                <input type="text" id="country-floating" class="form-control" name="tempat tgl lahir"
+                                                <input type="text" id="country-floating" class="form-control" name="ttl"
                                                     placeholder="tempat tgl lahir">
                                             </div>
                                         </div>
@@ -89,7 +89,8 @@ include('../../layouts/header.php');
                                         <div class="col-md-6 col-12">
                                             <div class="form-group">
                                                 <label for="email-id-column">Pilih Jurusan</label>
-                                                <select class="form-select" name="jurusan">
+                                                <select class="form-select" name="id_jurusan"
+                                                    placeholder="Email">
                                                     <?php
                                                     $jur = mysqli_query($conn, "SELECT * FROM jurusan");
                                                     while ($jurusan = mysqli_fetch_array($jur)) {
@@ -101,16 +102,8 @@ include('../../layouts/header.php');
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group col-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" id="checkbox5" class='form-check-input' checked>
-                                                    <label for="checkbox5">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1" name="submit" value="submit">Submit</button>
                                             <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
                                         </div>
                                     </div>
