@@ -1,11 +1,11 @@
 <?php
 include('../../layouts/header.php');
 include('../../database/koneksi.php');
-if (!isset($_SESSION["user"])) {
-    header("Location: ../../auth/login_pendaftar");
-    exit;
+// if (!isset($_SESSION["user"])) {
+//     header("Location: ../../auth/login_pendaftar");
+//     exit;
     
-} ?>
+// } ?>
 <div id="app">
     <?php include('../layouts/aside.php'); ?>
     <div id="main">

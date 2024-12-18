@@ -23,6 +23,13 @@
                         </a>
 
                     </li>
+                    <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'ortu') ? 'active' : ''; ?>">
+                        <a href="<?= BASE_URL ?>/pendaftar/ortu" class='sidebar-link'>
+                            <i data-feather="book-open" width="20"></i>
+                            <span>Pendaftaran Ortu</span>
+                        </a>
+
+                    </li>
                     <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'berkas') ? 'active' : ''; ?>">
                         <a href="<?= BASE_URL ?>/pendaftar/berkas" class='sidebar-link'>
                             <i data-feather="upload-cloud" width="20"></i>
@@ -34,6 +41,13 @@
                         <a href="<?= BASE_URL ?>/pendaftar/pembayaran" class='sidebar-link'>
                             <i data-feather="dollar-sign" width="20"></i>
                             <span>Pembayaran</span>
+                        </a>
+
+                    </li>
+                    <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'contact') ? 'active' : ''; ?>">
+                        <a href="<?= BASE_URL ?>/pendaftar/contact" class='sidebar-link'>
+                            <i data-feather="phone-call" width="20"></i>
+                            <span>Contact</span>
                         </a>
 
                     </li>

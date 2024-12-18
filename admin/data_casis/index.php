@@ -41,7 +41,6 @@ include('../layouts/header.php');
                                         <th>Email</th>
                                         <th>Asal Sekolah</th>
                                         <th>Jurusan</th>
-                                        <th>Username Pendaftar</th> <!-- Kolom untuk menampilkan username -->
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -50,9 +49,8 @@ include('../layouts/header.php');
                                     $i = 1;
                                     // Query untuk mengambil data siswa dengan data username dari tabel pendaftar
                                     // Ganti 'id_user' dengan 'id_pendaftar' untuk join dengan benar
-                                    $query = mysqli_query($conn, "SELECT siswa.*, jurusan.jurusan, pendaftar.username FROM siswa 
-                                                                  LEFT JOIN jurusan ON siswa.id_jurusan = jurusan.id_jurusan 
-                                                                  LEFT JOIN pendaftar ON siswa.id_pendaftar = pendaftar.id_pendaftar");
+                                    $query = mysqli_query($conn, "SELECT siswa.*, jurusan.jurusan FROM siswa 
+                                                                  LEFT JOIN jurusan ON siswa.id_jurusan = jurusan.id_jurusan");
                                     // Periksa apakah query berhasil
                                     if ($query) {
                                         // Loop melalui data siswa
@@ -70,10 +68,9 @@ include('../layouts/header.php');
                                                 <td><?php echo $data['email']; ?></td>
                                                 <td><?php echo $data['asal_sekolah']; ?></td>
                                                 <td><?php echo $data['jurusan']; ?></td>
-                                                <td><?php echo $data['username']; ?></td> 
                                                 <td>
-                                                    <a href="function/ubah_data.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
-                                                    <a onclick="return confirm('asli bli pen diapus kuh?')" href="function/hapus_data.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-danger"><i data-feather="trash"></i></a>
+                                                    <a href="../function/ubah_data.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
+                                                    <a onclick="return confirm('asli bli pen diapus kuh?')" href="../function/hapus_data.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-danger"><i data-feather="trash"></i></a>
                                                 </td>
                                             </tr>
                                     <?php

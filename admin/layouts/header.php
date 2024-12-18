@@ -17,6 +17,7 @@ define('BASE_URL', 'http://localhost/ppdbv1.00.01-1');
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/app.css">
     <link rel="shortcut icon" href="<?= BASE_URL ?>/assets/images/favicon.svg" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>

@@ -2,7 +2,6 @@
 include('../../database/koneksi.php');
 
 if (isset($_POST['submit'])) {
-    // Menangkap data input
     $id_jurusan = $_POST['id_jurusan'];
     $nisn = $_POST['nisn'];
     $nama_lengkap = $_POST['nama_lengkap'];
@@ -14,23 +13,25 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $asal_sekolah = $_POST['asal_sekolah'];
 
-    // Menambahkan id_pendaftar yang didapatkan dari session atau cara lainnya
-    $id_pendaftar = $_SESSION["user"]["id_pendaftar"]; // pastikan session sudah ada dan menyimpan id_pendaftar
+    // Step 1: Check if the NISN already exists in the database
+    $check_nisn = mysqli_query($conn, "SELECT * FROM siswa WHERE nisn = '$nisn'");
 
-    // Menyiapkan query menggunakan prepared statements untuk keamanan
-    $stmt = $conn->prepare("INSERT INTO siswa (id_jurusan, nisn, nama_lengkap, jenis_kelamin, ttl, alamat, agama, no_telepon, email, asal_sekolah, id_pendaftar) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    // Bind parameter ke query
-    $stmt->bind_param("isssssssssi", $id_jurusan, $nisn, $nama_lengkap, $jenis_kelamin, $ttl, $alamat, $agama, $no_telepon, $email, $asal_sekolah, $id_pendaftar);
-
-    // Mengeksekusi query dan mengecek hasilnya
-    if ($stmt->execute()) {
-        echo '<script>alert("Pendaftaran Berhasil!"); location.href = "../pendaftaran";</script>';
+    if (mysqli_num_rows($check_nisn) > 0) {
+        // If NISN already exists, show an alert
+        echo '<script>alert("NISN sudah terdaftar!"); location.href = "../pendaftaran";</script>';
     } else {
-        echo '<script>alert("Pendaftaran Gagal! Error: ' . $stmt->error . '"); location.href = "../pendaftaran";</script>';
-    }
+        // Step 2: If NISN is not duplicated, proceed with inserting the data
+        $query = mysqli_query($conn, "INSERT INTO siswa(id_jurusan, nisn, nama_lengkap, jenis_kelamin, ttl, alamat, agama, no_telepon, email, asal_sekolah) 
+                                      VALUES('$id_jurusan', '$nisn', '$nama_lengkap', '$jenis_kelamin', '$ttl', '$alamat', '$agama', '$no_telepon', '$email', '$asal_sekolah')");
 
-    // Menutup statement
-    $stmt->close();
+        if ($query) {
+            // If the insert query is successful, show a success alert
+            echo '<script>alert("Pendaftaran Berhasil!"); location.href = "../pendaftaran";</script>';
+        } else {
+            // If the insert query fails, show a general error alert
+            $error_message = mysqli_error($conn);
+            echo '<script>alert("Pendaftaran gagal! Error: ' . $error_message . '"); location.href = "../pendaftaran";</script>';
+        }
+    }
 }
 ?>

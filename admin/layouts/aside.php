@@ -28,10 +28,10 @@
                             </a>
 
                         </li>
-                        <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'jurusan') ? 'active' : ''; ?> ">
-                            <a href="<?= BASE_URL ?>/admin/jurusan" class='sidebar-link'>
+                        <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'data_ortu') ? 'active' : ''; ?> ">
+                            <a href="<?= BASE_URL ?>/admin/data_ortu" class='sidebar-link'>
                                 <i data-feather="trello" width="20"></i>
-                                <span>Jurusan</span>
+                                <span>Data Ortu</span>
                             </a>
 
                         </li>
