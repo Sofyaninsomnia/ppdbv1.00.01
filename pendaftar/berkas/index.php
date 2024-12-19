@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                       </script>';
             } else {
                 // Jika file adalah PDF, lanjutkan upload
-                $target_directory = "../../admin/berkas/upload/"; // Folder tempat upload
+                $target_directory = "../../"; // Folder tempat upload
 
                 // Pastikan folder upload ada
                 if (!is_dir($target_directory)) {

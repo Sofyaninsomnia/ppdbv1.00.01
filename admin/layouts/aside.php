@@ -42,6 +42,13 @@
                             </a>
 
                         </li>
+                        <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'rekap_data') ? 'active' : ''; ?> ">
+                            <a href="<?= BASE_URL ?>/admin/rekap_data" class='sidebar-link'>
+                                <i data-feather="folder" width="20"></i>
+                                <span>Rekap data casis</span>
+                            </a>
+
+                        </li>
                         <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'jadwal') ? 'active' : ''; ?> ">
                             <a href="<?= BASE_URL ?>/admin/jadwal" class='sidebar-link'>
                                 <i data-feather="calendar" width="20"></i>
