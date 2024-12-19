@@ -7,12 +7,15 @@ $query = "
     SELECT 
         ip.id_pendaftaran, 
         ip.nisn, 
-        ip.tanggal_pendaftaran, 
+        s.tanggal_pendaftaran,  -- Mengambil tanggal pendaftaran dari tabel siswa
         ip.jalur_pendaftaran, 
         ip.status_pendaftaran, 
-        j.jurusan
+        j.jurusan, 
+        s.nama_lengkap
     FROM 
         info_pendaftaran ip
+    JOIN 
+        siswa s ON ip.nisn = s.nisn   -- JOIN dengan tabel siswa untuk mendapatkan tanggal pendaftaran dan nama siswa
     JOIN 
         jurusan j ON ip.id_jurusan = j.id_jurusan
 ";
@@ -33,7 +36,7 @@ if (isset($_POST['update_status'])) {
     $update_query = "UPDATE info_pendaftaran SET status_pendaftaran = '$status_pendaftaran' WHERE id_pendaftaran = '$id_pendaftaran'";
     
     if (mysqli_query($conn, $update_query)) {
-        echo "<script>alert('Status pendaftaran berhasil diperbarui!'); window.location.href = 'rekap_data.php';</script>";
+        echo "<script>alert('Status pendaftaran berhasil diperbarui!'); window.location.href = '../rekap_data';</script>";
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -81,7 +84,7 @@ if (isset($_POST['update_status'])) {
                                             <td><?php echo $pendaftaran['status_pendaftaran']; ?></td>
                                             <td>
                                                 <!-- Form untuk mengubah status pendaftaran -->
-                                                <form method="POST" action="rekap_data.php">
+                                                <form method="POST" action="">
                                                     <input type="hidden" name="id_pendaftaran" value="<?php echo $pendaftaran['id_pendaftaran']; ?>">
                                                     <select name="status_pendaftaran" class="form-control" required>
                                                         <option value="Diterima" <?php if($pendaftaran['status_pendaftaran'] == 'Diterima') echo 'selected'; ?>>Diterima</option>

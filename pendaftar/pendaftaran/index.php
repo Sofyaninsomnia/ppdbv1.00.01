@@ -41,8 +41,8 @@ include('../../database/koneksi.php');
                                             <div class="form-group">
                                                 <label for="jenis_kelamin">Jenis Kelamin</label>
                                                 <select id="jenis_kelamin" class="form-select" name="jenis_kelamin" required>
-                                                    <option value="L">Laki-Laki</option>
-                                                    <option value="P">Perempuan</option>
+                                                    <option value="Laki-laki">Laki-Laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
                                                 </select>
                                             </div>
                                         </div>

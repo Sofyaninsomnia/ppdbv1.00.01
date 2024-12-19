@@ -26,21 +26,6 @@ $result = mysqli_query($conn, $query);
 if (!$result) {
     die('Error: ' . mysqli_error($conn));
 }
-
-// Proses untuk mengupdate status pendaftaran
-if (isset($_POST['update_status'])) {
-    $id_pendaftaran = $_POST['id_pendaftaran'];
-    $status_pendaftaran = $_POST['status_pendaftaran'];
-
-    // Query untuk memperbarui status pendaftaran
-    $update_query = "UPDATE info_pendaftaran SET status_pendaftaran = '$status_pendaftaran' WHERE id_pendaftaran = '$id_pendaftaran'";
-    
-    if (mysqli_query($conn, $update_query)) {
-        echo "<script>alert('Status pendaftaran berhasil diperbarui!'); window.location.href = 'rekap_data.php';</script>";
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-}
 ?>
 
 <div class="id">
@@ -53,11 +38,13 @@ if (isset($_POST['update_status'])) {
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-flex justify-content-between align-items-center">
                             <h4>Rekap Data Pendaftaran Casis</h4>
+                            <!-- Tombol untuk tambah rekap data -->
+                            <a href="../function/tambah_rekap.php" class="btn btn-success"><i data-feather="plus"></i> Tambah Rekap Data</a>
                         </div>
                         <div class="card-body">
-                            <table class="table table-responsive table-bordered">
+                            <table class="table table-responsive table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -84,15 +71,7 @@ if (isset($_POST['update_status'])) {
                                             <td><?php echo $pendaftaran['status_pendaftaran']; ?></td>
                                             <td>
                                                 <!-- Form untuk mengubah status pendaftaran -->
-                                                <form method="POST" action="rekap_data.php">
-                                                    <input type="hidden" name="id_pendaftaran" value="<?php echo $pendaftaran['id_pendaftaran']; ?>">
-                                                    <select name="status_pendaftaran" class="form-control" required>
-                                                        <option value="Diterima" <?php if($pendaftaran['status_pendaftaran'] == 'Diterima') echo 'selected'; ?>>Diterima</option>
-                                                        <option value="Tidak Diterima" <?php if($pendaftaran['status_pendaftaran'] == 'Tidak Diterima') echo 'selected'; ?>>Tidak Diterima</option>
-                                                        <option value="Dalam Proses" <?php if($pendaftaran['status_pendaftaran'] == 'Dalam Proses') echo 'selected'; ?>>Dalam Proses</option>
-                                                    </select>
-                                                    <button type="submit" name="update_status" class="btn btn-info mt-2">Perbarui Status</button>
-                                                </form>
+                                                <a href="../function/set_status.php?id=<?php echo $pendaftaran['id_pendaftaran']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
