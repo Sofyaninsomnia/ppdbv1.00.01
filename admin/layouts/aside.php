@@ -63,6 +63,13 @@
                             </a>
 
                         </li>
+                        <li class="sidebar-item <?= (basename($_SERVER['REQUEST_URI']) == 'update') ? 'active' : ''; ?> ">
+                            <a href="<?= BASE_URL ?>/admin/update" class='sidebar-link'>
+                                <i data-feather="share" width="20"></i>
+                                <span>Update landing page</span>
+                            </a>
+
+                        </li>
 
                     </ul>
                 </div>
