@@ -1,8 +1,12 @@
 <?php
 include('../../database/koneksi.php');
-include('../../layouts/header.php');
 
-// Query untuk mengambil data pendaftaran siswa
+
+if (!isset($_SESSION['user'])) {
+    header('Location: ../../auth/login');
+    exit;
+}
+
 $query = "
     SELECT 
         ip.id_pendaftaran, 
@@ -26,25 +30,27 @@ $result = mysqli_query($conn, $query);
 if (!$result) {
     die('Error: ' . mysqli_error($conn));
 }
+
+include('../layouts/header.php');
 ?>
 
-<div class="id">
-    <?php include('../layouts/aside.php'); ?>
-
-    <div id="main">
-        <?php include('../layouts/nav.php'); ?>
-
-        <section id="rekap-data">
-            <div class="row">
-                <div class="col-md-12">
+<body>
+    <div id="app">
+        <?php
+        include('../layouts/aside.php');
+        ?>
+        <div id="main">
+            <?php
+            include('../layouts/nav.php');
+            ?>
+            <div class="main-content container-fluid">
+                <section class="section">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4>Rekap Data Pendaftaran Casis</h4>
-                            <!-- Tombol untuk tambah rekap data -->
-                            <a href="../function/tambah_rekap.php" class="btn btn-success"><i data-feather="plus"></i> Tambah Rekap Data</a>
+                        <div class="card-header">
+                            Rekap data casis
                         </div>
                         <div class="card-body">
-                            <table class="table table-responsive table-striped table-bordered table-hover">
+                            <table class='table table-striped' id="table1">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -58,20 +64,20 @@ if (!$result) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php 
-                                    $i = 1;
-                                    while ($pendaftaran = mysqli_fetch_assoc($result)) { ?>
+                                    <?php
+                                    $no = 1;
+                                    while ($data = mysqli_fetch_assoc($result)) { ?>
                                         <tr>
-                                            <td><?php echo $i++; ?></td>
-                                            <td><?php echo $pendaftaran['nisn']; ?></td>
-                                            <td><?php echo $pendaftaran['nama_lengkap']; ?></td>
-                                            <td><?php echo $pendaftaran['jalur_pendaftaran']; ?></td>
-                                            <td><?php echo $pendaftaran['tanggal_pendaftaran']; ?></td> <!-- Tanggal diambil dari tabel siswa -->
-                                            <td><?php echo $pendaftaran['jurusan']; ?></td>
-                                            <td><?php echo $pendaftaran['status_pendaftaran']; ?></td>
+                                            <td><?php echo $no++; ?></td>
+                                            <td><?php echo $data['nisn']; ?></td>
+                                            <td><?php echo $data['nama_lengkap']; ?></td>
+                                            <td><?php echo $data['jalur_pendaftaran']; ?></td>
+                                            <td><?php echo $data['tanggal_pendaftaran']; ?></td> <!-- Tanggal diambil dari tabel siswa -->
+                                            <td><?php echo $data['jurusan']; ?></td>
+                                            <td><?php echo $data['status_pendaftaran']; ?></td>
                                             <td>
                                                 <!-- Form untuk mengubah status pendaftaran -->
-                                                <a href="../function/set_status.php?id=<?php echo $pendaftaran['id_pendaftaran']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
+                                                <a href="../function/set_status.php?id=<?php echo $data['id_pendaftaran']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -79,10 +85,13 @@ if (!$result) {
                             </table>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
-
-        <?php include('../../layouts/footer.php'); ?>
+            <?php
+            include('../layouts/footer.php');
+            ?>
+        </div>
     </div>
-</div>
+</body>
+
+</html>

@@ -17,14 +17,23 @@ if (isset($_POST['submit'])) {
         // Jika NISN tidak ditemukan di tabel siswa, tampilkan pesan error
         echo "<script>alert('NISN ini belum terdaftar!'); location.href = '../rekap_data';</script>";
     } else {
-        // Jika NISN ditemukan, lanjutkan untuk memasukkan data pendaftaran
-        $query = "INSERT INTO info_pendaftaran (nisn, jalur_pendaftaran, status_pendaftaran, id_jurusan) 
-                  VALUES ('$nisn', '$jalur_pendaftaran', '$status_pendaftaran', '$id_jurusan')";
+        // Cek apakah NISN sudah terdaftar di tabel info_pendaftaran
+        $check_pendaftaran_query = "SELECT * FROM info_pendaftaran WHERE nisn = '$nisn'";
+        $check_pendaftaran_result = mysqli_query($conn, $check_pendaftaran_query);
 
-        if (mysqli_query($conn, $query)) {
-            echo "<script>alert('Data berhasil ditambahkan!'); location.href = '../rekap_data';</script>";
+        if (mysqli_num_rows($check_pendaftaran_result) > 0) {
+            // Jika NISN sudah terdaftar di tabel info_pendaftaran, tampilkan pesan error
+            echo "<script>alert('Sudah pernah di rekap!'); location.href = '../rekap_data';</script>";
         } else {
-            echo "Error: " . mysqli_error($conn);
+            // Jika NISN belum terdaftar, lanjutkan untuk memasukkan data pendaftaran
+            $query = "INSERT INTO info_pendaftaran (nisn, jalur_pendaftaran, status_pendaftaran, id_jurusan) 
+                      VALUES ('$nisn', '$jalur_pendaftaran', '$status_pendaftaran', '$id_jurusan')";
+
+            if (mysqli_query($conn, $query)) {
+                echo "<script>alert('Data berhasil ditambahkan!'); location.href = '../rekap_data';</script>";
+            } else {
+                echo "Error: " . mysqli_error($conn);
+            }
         }
     }
 }

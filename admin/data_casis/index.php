@@ -69,7 +69,7 @@ include('../layouts/header.php');
                                                 <td><?php echo $data['asal_sekolah']; ?></td>
                                                 <td><?php echo $data['jurusan']; ?></td>
                                                 <td>
-                                                    <a href="../function/ubah_data.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
+                                                    <a href="ubah_casis.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-primary"><i data-feather="edit"></i></a>
                                                     <a onclick="return confirm('asli bli pen diapus kuh?')" href="../function/hapus_data.php?id=<?php echo $data['id_siswa']; ?>" class="btn icon btn-danger"><i data-feather="trash"></i></a>
                                                 </td>
                                             </tr>
